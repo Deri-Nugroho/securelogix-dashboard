@@ -444,8 +444,8 @@
 (function () {
 
   /* ── Config ── */
-  const BROKER   = 'test.mosquitto.org';
-  const PORT     = 8081;
+  const BROKER   = 'broker.emqx.io';
+  const PORT     = 8084; // Port WSS (Aman) milik EMQX
   const CLIENT_ID = 'securelogix_dash_' + Math.random().toString(16).slice(2, 8);
   const TOPICS   = [
     'arduthon/securelogix/temp',
@@ -514,7 +514,7 @@
   let client;
 
   function connect() {
-    client = new Paho.MQTT.Client(BROKER, PORT, '/', CLIENT_ID);
+    client = new Paho.MQTT.Client(BROKER, PORT, '/mqtt', CLIENT_ID);
 
     client.onConnectionLost = function (res) {
       connBadge.className = 'conn-badge error';
